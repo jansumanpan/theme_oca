@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_theme_oca_theme_oca,theme_oca.theme_oca,model_theme_oca_theme_oca,,1,0,0,0
