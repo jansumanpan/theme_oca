@@ -17,8 +17,11 @@ class OcaSlider(models.Model):
 
 class ProductCategoryLine(models.Model):
 	_name = 'product.category.line'
-	public_cat_id = fields.Many2one('product.public.category', string="Public Categories")
-	product_id = fields.Many2many('product.template', string="Products")
+	name = fields.Char(string="Collection name", required=True,
+                       translate=True,
+                       help="Name for your Slider")
+	public_cat_id = fields.Many2one('product.public.category', string="Category Reference")
+	product_id = fields.Many2many('product.template', string="Products to Display")
 	slider_id = fields.Many2one('oca.slider.config')
 # class ProductPublicCategory(models.Model):
 #    _inherit = 'product.public.category'

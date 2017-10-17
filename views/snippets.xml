@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+
+			<template id="custom_css_and_js_editor" inherit_id="website.assets_editor" name="Custom CSS and JS Editor">
+
+			    <xpath expr="//link[last()]" position="after">
+
+			        <!-- your custom css goes here -->
+
+			    </xpath>
+
+			    <xpath expr="//script[last()]" position="after">
+
+			       
+				<script type="text/javascript" src="/theme_oca/static/src/js/snippet_option.js"/>
+			    </xpath>
+
+			</template>
+
+			<template id="custom_css_and_js" inherit_id="website.assets_frontend" name="Custom CSS and JS">
+
+				<xpath expr="." position="inside">
+						 
+			       
+			    </xpath>
+
+			</template>
+
+			<template id="oca_snippets" name="oca snippet" inherit_id="website.snippets">
+			  <xpath expr="//div[@id='snippet_structure']" position="inside">
+					<!-- Cannot call T-tags Except T-Field, Call Template using JS -->
+					<div>
+
+						<div class="oe_snippet_thumbnail">
+							<img class="oe_snippet_thumbnail_img" src="theme_oca/static/src/img/thumbnail.png" alt=""/>
+							<span class="oe_snippet_thumbnail_title">
+							 Product Slider
+							</span>
+						</div>
+
+						<section class="oe_snippet_body oca_snip" style="background-color:#f7f7f7;">
+							<div class="parametricTemplate mt16 mb16">
+							</div>
+						    
+						</section>
+					</div>
+			  </xpath>
+
+			   <xpath expr="//div[@id='snippet_options']" position="inside">
+			    <div data-snippet-option-id='oca_snippet_option' data-selector=".oca_snip" data-selector-siblings="p, h1, h2, h3, blockquote, .well, .panel, .oe_share" data-selector-children=".content"> 
+			    	<li class="dropdown-submenu">
+			        <a href="#">Your Option</a>
+			        <ul class="dropdown-menu"> 
+			          <li data-select_class="opt_shadow"><a>Shadow Images</a></li>
+			          <li data-select_class="opt_grey_bg"><a>Grey Bg</a></li>
+			          <li data-select_class=""><a>None</a></li>
+			        </ul>
+			      </li>
+			    </div>
+			  </xpath>
+
+
+			</template>
+
+			<template id="display_categories">
+				<div class="container text-center">
+					<t t-set="categories" t-value="request.env['product.category.line'].sudo().search([])"/>
+						      <div class="row" style="height: 56vh;background-color:#fff;position: relative;">
+						      	<div class="header_slider_snippet" style="height:20%;position: relative;">
+						      		<h3 class="slider_snippet_name" style="float:left"></h3>
+									<ul style="float:right;list-style:none">
+						      			<li class = "display_categories_list" t-foreach="categories" t-as="category" style="display:inline-block;float:left">
+								     		
+								     		<a href="" t-attf-data-id="#{category.public_cat_id}"><t t-esc="category.name"/></a>
+								     	</li>
+						      		</ul>
+						      	</div>
+						      	<div class="content_slider_snippet" style="height:80%;position: absolute;overflow:scroll;overflow-y: hidden;width: -webkit-fill-available;">
+						      	</div>
+						      </div>
+				</div>  	
+			</template>
+
+	</data>
+</openerp>
