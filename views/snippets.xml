@@ -22,33 +22,29 @@
 
 				<xpath expr="." position="inside">
 						 
-			       
+			       <script type="text/javascript" src="/theme_oca/static/src/js/snippet_frontend.js"/>
 			    </xpath>
 
 			</template>
 
-			<template id="oca_snippets" name="oca snippet" inherit_id="website.snippets">
-			  <xpath expr="//div[@id='snippet_structure']" position="inside">
-					<!-- Cannot call T-tags Except T-Field, Call Template using JS -->
-					<div>
-
-						<div class="oe_snippet_thumbnail">
-							<img class="oe_snippet_thumbnail_img" src="theme_oca/static/src/img/thumbnail.png" alt=""/>
-							<span class="oe_snippet_thumbnail_title">
-							 Product Slider
-							</span>
-						</div>
-
-						<section class="oe_snippet_body oca_snip" style="background-color:#f7f7f7;">
-							<div class="parametricTemplate mt16 mb16">
-							</div>
-						    
+			<template id="t_oca_snippets" name="Oca Slider">
+				<section class="oe_snippet_body oca_snip" style="background-color:#f7f7f7;" data-multi-cat-slider-type="" contentEditable="false">
+							<div class="container">
+				                <div class="row our-categories">
+				                    <div class="col-md-12">
+				                        <div class="title-block">
+				                            <h4 id="snippet-title" class="section-title style1"><span>Slider</span></h4>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
 						</section>
-					</div>
-			  </xpath>
+			</template>
+				
 
-			   <xpath expr="//div[@id='snippet_options']" position="inside">
-			    <div data-snippet-option-id='oca_snippet_option' data-selector=".oca_snip" data-selector-siblings="p, h1, h2, h3, blockquote, .well, .panel, .oe_share" data-selector-children=".content"> 
+			<template id="oca_snippet_slider_options" inherit_id="website.snippet_options" name="Modify Options">
+				<xpath expr="//div" position="after">
+			    <!-- <div data-snippet-option-id='oca_snippet_option' data-selector=".oca_snip" data-selector-siblings="p, h1, h2, h3, blockquote, .well, .panel, .oe_share" data-selector-children=".content" data-js="oca_snippet_option"> 
 			    	<li class="dropdown-submenu">
 			        <a href="#">Your Option</a>
 			        <ul class="dropdown-menu"> 
@@ -57,29 +53,75 @@
 			          <li data-select_class=""><a>None</a></li>
 			        </ul>
 			      </li>
-			    </div>
+			    </div> -->
+			    <div data-js="oca_snippet_option" data-selector=".oca_snip" data-snippet-option-id="oca_snippet_option">
+	                <li data-multi_category_slider="">
+	                    <a class="oe_multi_category_slider">Modify</a>
+	                </li>
+            	</div>
+			  </xpath>
+			</template>
+			<template id="oca_snippets" name="oca snippet" inherit_id="website.snippets">
+			  <xpath expr="//div[@id='snippet_structure']" position="inside">
+					<!-- Cannot call T-tags Except T-Field, Call Template using JS -->
+					<!-- div>
+
+						<div class="oe_snippet_thumbnail">
+							<img class="oe_snippet_thumbnail_img" src="theme_oca/static/src/img/thumbnail.png" alt=""/>
+							<span class="oe_snippet_thumbnail_title">
+							 Product Slider
+							</span>
+						</div>
+
+						
+					</div> -->
+					 <t t-snippet="theme_oca.t_oca_snippets" t-thumbnail="/theme_oca/static/src/img/thumbnail.png"/>
 			  </xpath>
 
+			  
 
 			</template>
 
 			<template id="display_categories">
-				<div class="container text-center">
+				<div class="container">
+				                <div class="title-block">
+					                <h4 class="section-title style1" t-if="not slider_header">
+					                    <span>No Display</span>
+					                </h4>
+					                <h4 class="section-title style1" t-if="slider_header">
+					                    <span>
+					                        <t t-esc="slider_header.name"/>
+					                    </span>
+					                </h4>
+					                <!-- <hr/> -->
+					            </div>
+				</div>
+				<!-- <div class="container text-center">
 					<t t-set="categories" t-value="request.env['product.category.line'].sudo().search([])"/>
 						      <div class="row" style="height: 56vh;background-color:#fff;position: relative;">
 						      	<div class="header_slider_snippet" style="height:20%;position: relative;">
 						      		<h3 class="slider_snippet_name" style="float:left"></h3>
-									<ul style="float:right;list-style:none">
-						      			<li class = "display_categories_list" t-foreach="categories" t-as="category" style="display:inline-block;float:left">
-								     		
-								     		<a href="" t-attf-data-id="#{category.public_cat_id}"><t t-esc="category.name"/></a>
-								     	</li>
-						      		</ul>
+									
 						      	</div>
 						      	<div class="content_slider_snippet" style="height:80%;position: absolute;overflow:scroll;overflow-y: hidden;width: -webkit-fill-available;">
+						      		<div class="col-md-2">
+						      			<ul style="list-style:none">
+							      			<li class = "display_categories_list" t-foreach="categories" t-as="category" style="display:inline-block;float:left;clear:both;">
+									     		
+									     		<a href="" t-attf-data-id="#{category.public_cat_id}"><t t-esc="category.name"/></a>
+									     	</li>
+						      			</ul>
+						      		</div>
+						      		<div class="col-md-3">
+						      			
+						      		</div>
+						      		<div class="col-md-7">
+						      			
+						      		</div>
 						      	</div>
 						      </div>
-				</div>  	
+				</div>  	 -->
+
 			</template>
 
 	</data>
