@@ -23,5 +23,13 @@ class OcaSliderSettings(http.Controller):
 		if post.get('slider-type'):
 			slider_header = request.env['oca.slider.config'].sudo().search([('id', '=', int(post.get('slider-type')))])
 			_logger.warning(slider_header)
-			values = {'slider_header': slider_header}
+			slider_categ_ids = request.env['product.category.line'].sudo().search([('slider_id', '=', slider_header.id)])
+			# categ_ids = request.env['product.public.category'].sudo().search([('id', 'in', slider_categ_ids.public_cat_id)])
+			_logger.warning(slider_categ_ids)
+			values = {
+				'slider_header': slider_header,
+				'slider_categ_ids': slider_categ_ids
+
+			}
+
 			return request.website.render("theme_oca.display_categories", values)

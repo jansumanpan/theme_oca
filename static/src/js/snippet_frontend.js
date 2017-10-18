@@ -12,7 +12,7 @@
             var self = this;
             console.log(editable_mode)
             if (editable_mode) {
-                $('.oca_snip').empty();
+                $('.oca_snip owl-carousel').empty();
             }
             if (!editable_mode) {
                 console.log('agi')

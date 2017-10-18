@@ -3,7 +3,7 @@
     var website = openerp.website;
     var _t = openerp._t;
 
-    website.add_template_file('/theme_oca/static/src/xml/slider_config.xml');
+    website.add_template_file('/theme_oca/static/src/xml/oca_slider_temp.xml');
 
     website.snippet.options.oca_snippet_option = website.snippet.Option.extend(
     {   
@@ -12,9 +12,9 @@
         {  
             var self = this;
             this._super();
-            this.$target.find('.oca_snip').empty();
+            this.$target.find('.oca_snip owl-carousel').empty();
             if (!editMode) {
-                self.$el.find(".oca_snip").on("click", _.bind(self.slider_config_options, self));
+                self.$el.find(".oca_snip owl-carousel").on("click", _.bind(self.slider_config_options, self));
             }
         },
          drop_and_build_snippet: function() {
@@ -28,36 +28,13 @@
         },
         clean_for_save: function() 
         {
-            // $('.oca_snip').empty();
-                // .append(
-                // 	jQuery('<t />')
-                //         .attr('t-call', 'theme_oca.display_categories')
-                //         .attr('t-ignore-branding', '1')
-                //         // this.$target.find('content_best_sellers')
-                //         // .append(
-                //         // 	jQuery('<t />')
-                //         // 	 .attr('t-call', 'website_best_sellers.display_products')
-                //         // 	 .attr('t-ignore-branding', '1')
-                //         // 	);
-
-                //         // .append(
-                //         //     jQuery('<t />')
-                //         //        .attr('t-value', this.$target.attr('data-blog_id'))
-                //         //        .attr('t-set', 'blog_id')
-                //         //        .attr('t-ignore-branding', '1'),
-                //         //     jQuery('<t />')
-                //         //         .attr('t-value', this.$target.attr('data-parameter_id'))
-                //         //         .attr('t-set', 'parameter_id')
-                //         //         .attr('t-ignore-branding', '1')
-                //         //      )
-                       
-                // );
+            $('.oca_snip owl-carousel').empty();
         
         },
          slider_config_options: function(type, value) {
             var self = this;
             if (type == "click" || type == undefined) {
-                self.$modal = $(openerp.qweb.render("theme_oca.oca_slider"));
+                self.$modal = $(openerp.qweb.render("theme_oca.oca_slider_temp"));
                 console.log("slider_config_options")
                 self.$modal.appendTo('body');
                 self.$modal.modal();

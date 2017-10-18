@@ -95,32 +95,26 @@
 					                </h4>
 					                <!-- <hr/> -->
 					            </div>
+					            <div class="lns-inner latest-news-section">
+				                	<div class="row">
+				                    	<div class="lns-post">
+					                         <div class="psb-inner">
+					                            <ul id="multi_dynamic_slider_tabs" class="nav nav-tabs">
+
+					                                <t t-foreach="slider_categ_ids" t-as="slider_categ_id">
+					                                    <li class="active my-test">
+					                                        <a href="#multi-collection1" data-toggle="tab" t-attf-data-id="#{slider_categ_id.public_cat_id.id}">
+					                                            <t t-esc='slider_categ_id.name'/>
+					                                        </a>
+					                                    </li>
+					                                </t>
+					                            </ul>
+					                         </div>
+				                       	</div>
+				                     </div>
+				                 </div>
 				</div>
-				<!-- <div class="container text-center">
-					<t t-set="categories" t-value="request.env['product.category.line'].sudo().search([])"/>
-						      <div class="row" style="height: 56vh;background-color:#fff;position: relative;">
-						      	<div class="header_slider_snippet" style="height:20%;position: relative;">
-						      		<h3 class="slider_snippet_name" style="float:left"></h3>
-									
-						      	</div>
-						      	<div class="content_slider_snippet" style="height:80%;position: absolute;overflow:scroll;overflow-y: hidden;width: -webkit-fill-available;">
-						      		<div class="col-md-2">
-						      			<ul style="list-style:none">
-							      			<li class = "display_categories_list" t-foreach="categories" t-as="category" style="display:inline-block;float:left;clear:both;">
-									     		
-									     		<a href="" t-attf-data-id="#{category.public_cat_id}"><t t-esc="category.name"/></a>
-									     	</li>
-						      			</ul>
-						      		</div>
-						      		<div class="col-md-3">
-						      			
-						      		</div>
-						      		<div class="col-md-7">
-						      			
-						      		</div>
-						      	</div>
-						      </div>
-				</div>  	 -->
+				
 
 			</template>
 
