@@ -12,9 +12,9 @@
         {  
             var self = this;
             this._super();
-            this.$target.find('.oca_snip owl-carousel').empty();
+            this.$target.find('.oca_snip .owl-carousel').empty();
             if (!editMode) {
-                self.$el.find(".oca_snip owl-carousel").on("click", _.bind(self.slider_config_options, self));
+                self.$el.find(".oca_snip").on("click", _.bind(self.slider_config_options, self));
             }
         },
          drop_and_build_snippet: function() {
@@ -28,14 +28,14 @@
         },
         clean_for_save: function() 
         {
-            $('.oca_snip owl-carousel').empty();
+            $('.oca_snip .owl-carousel').empty();
         
         },
          slider_config_options: function(type, value) {
             var self = this;
             if (type == "click" || type == undefined) {
                 self.$modal = $(openerp.qweb.render("theme_oca.oca_slider_temp"));
-                console.log("slider_config_options")
+                // console.log("slider_config_options")
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#slider_type"),
@@ -55,7 +55,7 @@
                 });
 
                 $snippnet_submit.on('click', function() {
-                    console.log("clicked sumbit")
+                    // console.log("clicked sumbit")
                     var type = '';
                     self.$target.attr('data-multi-cat-slider-type', $slider_type.val());
                     self.$target.attr('data-multi-cat-slider-id', 'multi-cat-myowl'+ $slider_type.val());
