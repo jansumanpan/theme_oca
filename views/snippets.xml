@@ -38,28 +38,19 @@
 				                    </div>
 				                </div>
 				            </div>
-						</section>
+				</section>
 			</template>
 				
 
 			<template id="oca_snippet_slider_options" inherit_id="website.snippet_options" name="Modify Options">
 				<xpath expr="//div" position="after">
-			    <!-- <div data-snippet-option-id='oca_snippet_option' data-selector=".oca_snip" data-selector-siblings="p, h1, h2, h3, blockquote, .well, .panel, .oe_share" data-selector-children=".content" data-js="oca_snippet_option"> 
-			    	<li class="dropdown-submenu">
-			        <a href="#">Your Option</a>
-			        <ul class="dropdown-menu"> 
-			          <li data-select_class="opt_shadow"><a>Shadow Images</a></li>
-			          <li data-select_class="opt_grey_bg"><a>Grey Bg</a></li>
-			          <li data-select_class=""><a>None</a></li>
-			        </ul>
-			      </li>
-			    </div> -->
 			    <div data-js="oca_snippet_option" data-selector=".oca_snip" data-snippet-option-id="oca_snippet_option">
 	                <li data-multi_category_slider="">
 	                    <a class="oe_multi_category_slider">Modify</a>
 	                </li>
             	</div>
 			  </xpath>
+
 			</template>
 			<template id="oca_snippets" name="oca snippet" inherit_id="website.snippets">
 			  <xpath expr="//div[@id='snippet_structure']" position="inside">
@@ -103,18 +94,70 @@
 
 					                                <t t-foreach="slider_categ_ids" t-as="slider_categ_id">
 					                                    <li class="active my-test">
-					                                        <a href="#multi-collection1" data-toggle="tab" t-attf-data-id="#{slider_categ_id.public_cat_id.id}">
+					                                        <a href="#multi-collection1" data-toggle="tab" t-attf-data-id="#{slider_categ_id.id}">
 					                                            <t t-esc='slider_categ_id.name'/>
 					                                        </a>
 					                                    </li>
 					                                </t>
 					                            </ul>
+					                            <div class="tab-content">
+					                            </div>
+					                            
 					                         </div>
 				                       	</div>
 				                     </div>
 				                 </div>
 				</div>
 				
+
+			</template>
+
+			<template id="display_products">
+												
+						                                <t t-if="products">
+						                                    <div class="active multi_hide" id="multi-collection1">
+						                                        <div class="owl-carousel">
+						                                            <t t-foreach="products" t-as="product">
+						                                                <div class="cs-product">
+						                                                    <div class="pwp-img">
+						                                                        <!-- <div t-if="product and product.product_style_tag_id" t-att-class="'%s' % product.product_style_tag_id.color if product and product.product_style_tag_id else ''">
+						                                                            <t t-esc="product.product_style_tag_id.name"/>
+						                                                        </div> -->
+						                                                        <a t-att-href="'/shop/product/%s' % slug(product)">
+						                                                            <img class="front" t-att-alt="product.name" t-att-title="product.name" t-att-src="website.image_url(product, 'image')"/>
+						                                                        </a>
+						                                                    </div>
+						                                                    <!-- <div class="pink-box">
+
+						                                                        <div class="view">
+						                                                            <div class="shopping-cart">
+						                                                                <a t-attf-href="/shop/product/#{ slug(product) }">
+						                                                                    <img src="/kingfisher_pro/static/src/img/cart2.png" alt="Shopping-cart" title="Shopping Cart" />
+						                                                                </a>
+						                                                            </div>
+						                                                        </div>
+						                                                    </div> -->
+						                                                    <div class="pwp-info">
+						                                                        <p class="pwpi-title">
+						                                                            <a t-attf-href="/shop/product/#{ slug(product) }">
+						                                                                <span t-field='product.name'/>
+						                                                            </a>
+						                                                        </p>
+						                                                        <p class="price">
+						                                                            <span class="price">
+						                                                                <span t-field="product.lst_price"
+						                                                                      t-field-options='{
+						                                                                         "widget": "monetary",
+						                                                                         "display_currency": "website.pricelist_id.currency_id"
+						                                                                }'></span>
+						                                                            </span>
+						                                                        </p>
+						                                                    </div>
+						                                                </div>
+						                                            </t>
+						                                        </div>
+						                                    </div>
+						                                </t>
 
 			</template>
 

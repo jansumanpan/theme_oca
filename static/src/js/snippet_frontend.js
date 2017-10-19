@@ -10,20 +10,47 @@
         selector: ".oca_snip",
         start: function(editable_mode) {
             var self = this;
-            console.log(editable_mode)
+            // console.log(editable_mode)
             if (editable_mode) {
                 $('.oca_snip owl-carousel').empty();
             }
             if (!editable_mode) {
-                console.log('agi')
+                console.log('Will Run at Start')
                 var slider_type = self.$target.attr('data-multi-cat-slider-type');
-                $.post("/theme_oca/oca_get", {
+                $.post("/theme_oca/oca_get_cat", {
                     'slider-type': self.$target.attr('data-multi-cat-slider-type') || '',
                 }).then(function(data) {
                     if (data) {
+                        console.log(self.$target)
                         console.log(data)
                         self.$target.empty();
                         self.$target.append(data);
+                        // console.log("newer")
+                        self.$('.active.my-test').slice(1).removeClass('active');
+                        var $li = self.$('.my-test');
+                        // var $first_li = self.$('.active.my-test');
+                         // console.log(self.$first_li)
+                         // var $data_id = $first_li.children('a').data('id')
+                         var tab_content = self.$el.find('a');
+                          console.log(tab_content)
+                        $li.on('click', function() 
+                            {
+                                var self = $(this);
+                                var $data_id = self.find('a').data('id')
+                                var display_prod = self.closest('.psb-inner').find('.tab-content')
+                                console.log(display_prod)
+                                $.post("/theme_oca/oca_get_prod", {'data_id':parseInt($data_id)})
+                                    .then(function (data) {
+
+                                        // var res = JSON.parse(data);
+
+                                        console.log("Show Data: " + data)
+                                        display_prod.empty();
+                                        display_prod.append(data)
+                                    });
+                            }
+                        )
+                        // self.$target.
                         // $(".oe_multi_category_slider").removeClass('hidden');
 
                         // openerp.jsonRpc('/kingfisher_pro/product_multi_image_effect_config', 'call', {

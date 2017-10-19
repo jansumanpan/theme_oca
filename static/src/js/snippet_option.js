@@ -42,10 +42,10 @@
                     $cancel = self.$modal.find("#cancel"),
                     $snippnet_submit = self.$modal.find("#snippnet_submit");
 
-                openerp.jsonRpc('/theme_oca/oca_slider_settings', 'call', {}).done(function(result) {
+                openerp.jsonRpc('/theme_oca/oca_slider_settings', 'call', {}).done(function(res) {
                     $("select[id='slider_type'] option").remove();
-                    console.log("res:" + result)
-                    var res = JSON.parse(result);
+                    // console.log("res:" + result)
+                    // var res = JSON.parse(result);
                     _.each(res, function(y) {
                          $("select[id='slider_type']").append($('<option>', {
                             value: y["id"],
