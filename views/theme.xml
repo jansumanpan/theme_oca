@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <openerp>
 	<data>
-
-
-
 		<template id="product_scroll">
 			<div id="cart_total" t-if="website_sale_order">
 				<div class="product-desc">
@@ -308,7 +305,7 @@
 								<ul class="dropdown-menu">
 					        		<li><a href="/web">My Account</a></li>
 					        		<li><a href="#">My Wishlist</a></li>
-					        		<li><a href="#">Checkout</a></li>
+					        		<li><a href="/shop/checkout">Checkout</a></li>
 					        	</ul>
 
 							</li>

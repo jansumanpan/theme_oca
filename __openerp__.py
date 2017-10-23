@@ -20,14 +20,15 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','website','website_sale','website_less','website_blog','mass_mailing'],
+    'depends': ['base','website','website_sale','website_less','website_blog','mass_mailing','web_widget_color','stock','sale'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'templates.xml',
+        # 'templates.xml',
         'views/theme.xml',
         'views/assets.xml',
+        'views/oca_view.xml',
         'views/snippets.xml',
     ],
     # only loaded in demonstration mode
