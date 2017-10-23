@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+
+
+
+		<template id="product_scroll">
+			<div id="cart_total" t-if="website_sale_order">
+				<div class="product-desc">
+					<t t-foreach="website_sale_order.website_order_line" t-as="line">
+						<div class="pd-row" style="
+								    display: inline-block;
+								    width: 100%;
+								    vertical-align: top;
+								    position: relative;
+								    padding-bottom: 40px;
+								    border-bottom: 1px solid #e6e6e6;
+								">
+							<span class="pd-img" style="
+									    float: left;
+									    width: 30%;
+									    margin: 0;
+									    max-height: 65px;
+									">
+								<a t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">
+									<span t-field="line.product_id.image_medium" t-field-options='{"widget": "image", "class": "img-rounded", "alt-field": "name"}'/>
+								</a>
+							</span>
+							<div class="pd-details" style="
+									    text-align: left;
+									    padding-left: 20px;
+									    padding-top: 20px;
+									    float: left;
+									    width: 70%;
+									">
+								<p class="pd-name">
+									<a t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">
+										<t t-esc="line.product_id.name"/>
+									</a>
+								</p>
+								<p>
+									<strong>
+										<span t-field="line.price_unit" t-field-options='{"widget": "monetary", "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"}'/>
+									</strong>
+								</p>
+							</div>
+						</div>
+					</t>
+					<div class="view-cart">
+						<button onclick="location.href='/shop/cart'" class="btn btn-default" style="display: block;
+										    height: 50px;
+										    line-height: 50px;
+										    margin-bottom: 15px;
+										    padding: 0 20px;
+										    width: 100%;
+										    font-weight: bold;
+										    font-size: 100%;
+										    font-family: 'Open Sans';
+										    margin-top: 15px;
+										    color: #fff;
+										    background-color: #aaaaaa;
+										    border-color: #808080;
+										    border-width: 0 0 2px;
+										    border-style: solid;">
+								<span class="fa fa-shopping-cart" style="font-size: 20px;"/>
+					    				View And Edit Cart
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
+
+		<template id="custom_header" inherit_id="website.layout" name="OCA header">
+			
+			<!-- Hide main navbar Cart -->
+			<!-- <xpath expr="//ul[@id='top_menu']//a[@href='/shop/cart']" position="attributes">
+	            <attribute name='style'>display:none;</attribute>
+	        </xpath> -->
+
+			<!-- header's Divider -->
+			<xpath expr="//header//li[@class='divider']" position="replace">
+					
+			</xpath>
+
+			<!-- Hide main navbar sign in -->
+			<xpath expr="//header//ul[@id='top_menu']//li[@class='dropdown']" position="replace">
+				
+			</xpath>
+			
+			<!-- Apply fonts to whole body -->
+			<xpath expr="//body" position="attributes">
+				<attribute name="style">font-family: 'Roboto', sans-serif;</attribute>
+			</xpath>
+
+			<!-- Add another menu to bottom of main -->
+			<xpath expr="//div[@class='navbar navbar-default navbar-static-top']" position="after">
+				<div class="container-fluid header-bottom" style="background-color: #2977a9;">
+					<div class="container">
+						<div class="row header-bottom-row">
+							<div class="col-lg-3 header-bottom-category">
+								<div class="dropdown open">
+									<button class="btn btn-default" type="button" data-toggle="dropdown" data-hover="dropdown">
+										<strong>
+											<span class="fa fa-list-ul"></span>
+											<span style="padding: 0 0 0 15px; font-size: 16px;">Categories</span>
+										</strong>
+									</button>
+									<ul class="dropdown-menu">
+									 	<t t-set="categories" t-value="request.env['product.public.category'].sudo().search([])"></t>
+									 	<li t-foreach="categories" t-as="cat">
+									 		<a t-attf-href="/shop/category/#{cat.name}-#{cat.id}">
+									 			<t t-esc="cat.name"></t>
+									 		</a>
+									 	</li>
+
+									 	<!-- <t t-foreach="categories" t-as="c">
+									 		<t t-call="theme_oca.categories_recursive"></t>
+									 	</t> -->
+									</ul>
+								</div>
+								
+
+							</div>
+							<div class="col-lg-9 header-bottom-search">
+								<div class="input-group search-group">
+									<input type="text" placeholder="Search here..." class="form-control"/>
+									<select name="category_id" class="form-control">
+					                    <t t-set="categories" t-value="request.env['product.public.category'].sudo().search([])"></t>
+											<option value="1" selected="selected">All Category</option>
+												<t t-foreach="categories" t-as="cat">
+						                        <option t-attf-value="#{cat.id}"><t t-esc="cat.name"></t></option>
+					                    </t>
+					                    <span class="fa fa-angle-down"></span>
+					                </select>
+									<span class="input-group-btn">
+										<button class="btn btn-default btn-search" type="button">
+											<span class="fa fa-search"></span>
+											<strong>
+												SEARCH
+											</strong>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xpath>
+
+			<!-- Customize the main navbar -->
+			<xpath expr="//div[@class='navbar navbar-default navbar-static-top']" position="attributes">
+				<attribute name="class">navbar navbar-default navbar-static-top header-content</attribute>
+			</xpath>
+
+			<!-- Add centering on main nav items -->
+			<xpath expr="//ul[@class='nav navbar-nav navbar-right']" position="attributes">
+				<attribute name="class">nav navbar-nav navbar-center</attribute>
+			</xpath>
+
+			<!-- Add items on the right of main nav -->
+			<xpath expr="//ul[@id='top_menu']" position="after">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Compare</a></li>
+					<li><a href="#">Wishlist</a></li>
+					<li class="cart-item dropdown">
+						<a href="/shop/cart" title="Checkout" class="top-link-checkout dropdown-toggle" data-toggle="dropdown">
+							<span class="fa fa-shopping-cart" style="font-size: 25px;">
+								<t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+								<span style=" color: #fff;
+										    background-color: #e14646;
+										    border-radius: 50%;
+										    height: 19px;
+										    position: absolute;
+										    text-align: center;
+										    bottom: 10px;
+										    width: 19px;
+										    line-height: 18px;
+										    z-index: 2;
+										    min-width: auto;
+										    font-size: 13px;
+										    margin-left: -7px;
+										    font-family: 'Open Sans';
+											" class="cart-quantity" t-esc="website_sale_order and website_sale_order.cart_quantity or 0"/>
+							</span>
+							<span class="minicart-text">
+								<strong>
+									<!-- <span style="font-family: 'Open Sans'; margin-left: 13px;" t-field="website.sale_get_order().amount_total" t-field-options='{"widget": "monetary","from_currency": "display_currency": "website.currency_id"}'/> -->
+									<t t-if="website.sale_get_order()">
+										<span t-esc="website.sale_get_order().amount_total or 0" style="font-family: 'Open Sans'; margin-left: 13px;"/>
+										<span t-esc="website.sale_get_order().pricelist_id.currency_id.symbol or ''" style="font-family: 'Open Sans';"/>
+									</t>
+								</strong>
+							</span>
+						</a>
+						<div class="dropdown-menu product-list" style="min-width: 400px; padding: 20px; text-align: center;">
+					    	<div t-if="not website_sale_order or not website_sale_order.website_order_line" class="yam-content">
+					    		You have no items in your shopping cart.
+					    	</div>
+					    	<div t-if="website_sale_order and website_sale_order.website_order_line">
+					    		<div class="block-subtitle ">
+					    			<!-- <t t-esc="website_sale_order and website_sale_order.cart_quantity or ''"></t>ITEMS CART SUBTOTAL: <t t-esc="website.sale_get_order().pricelist_id.currency_id"/><t t-esc="website.sale_get_order().amount_total"/> -->
+									
+									<strong>
+										<span style="color: #e5534c;" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" ></span> ITEMS CART SUBTOTAL: 
+						    			<span style="color: #e5534c;" t-field="website.sale_get_order().amount_total" t-field-options='{
+	                                              "widget": "monetary",
+	                                              "from_currency": "website.sale_get_order().pricelist_id.currency_id",
+	                                              "display_currency": "website.currency_id"
+	                                    }'>
+
+	                                	</span>
+                                	</strong>
+					    		</div>
+					    		<div class="checkout-button">
+					    			<!-- <div style="background-color: #fed700; border-bottom: 2px solid #dfbd00; height: 50px; padding: 0 20px; line-height: 50px; margin: 15px 0; font-weight: bold; font-family: 'Open Sans'; border-radius: 3px;">
+						    			<a href="/shop/cart" style="text-decoration: none; color:#333e48;">
+						    				<span class="fa fa-pencil-square-o" style="color: #333e48; font-size: 20px;"/>
+						    				Go To Checkout
+						    			</a>
+					    			</div> -->
+
+					    			<button onclick="location.href= '/shop/checkout';" class="btn btn-default" style="    			display: block;
+										    height: 50px;
+										    line-height: 50px;
+										    margin-bottom: 15px;
+										    padding: 0 20px;
+										    width: 100%;
+										    font-weight: bold;
+										    font-size: 100%;
+										    font-family: 'Open Sans';
+										    margin-top: 15px;
+										    color: #333e48;
+										    background-color: #fed700;
+										    border-color: #dfbd00;
+										    border-width: 0 0 2px;
+										    border-style: solid;">
+					    				<span class="fa fa-pencil-square-o" style="font-size: 20px;"/>
+					    				Go To Checkout
+					    			</button>
+					    		</div>
+					    		<div id="product-scrollable">
+					    			<t t-call="theme_oca.product_scroll"></t>
+					    		</div>
+					    	</div>
+					    </div>
+					</li>
+				</ul>
+			</xpath>
+
+			<!-- Change Company logo -->
+			<xpath expr="//header//a[@class='navbar-brand']" position="before">
+	            <a href="/" class="navbar-brand logo">
+	                <img src="/theme_oca/static/src/img/logo.png" alt="Logo" title="Logo"/>
+	            </a>
+	        </xpath>
+
+			<!-- Custom top header -->
+			<xpath expr="//div[@id='wrapwrap']/header/div" position="before">
+				<nav class="navbar header-top" style="background-color: #146191; border-radius: 0px;">
+				  <div class="container" style="color: #fff;">
+				    <div class="col-lg-6 header-support">
+						<span class="fa fa-headphones"></span>
+						Support <span t-field="res_company.phone"/> - Email: <span t-field="res_company.email"/>
+				    </div>
+				    <div class="col-lg-6">
+				      <ul class="nav navbar-nav navbar-right">
+				        <li><a href="#" style="border-right: 1px solid #4381a7;"><span class="fa fa-map-marker"></span> Store Location</a></li>
+				        <t t-set="languages" t-value="website.get_languages() if website else None"/>
+				        <t t-set="lg" t-value="website.get_current_website().default_lang_id"/>
+				        <li class="dropdown">
+				        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				        		<span>
+				        			<t t-esc="lg.name"/>
+				        		</span>
+				        		<span class="fa fa-angle-down"></span></a>
+				        	<ul class="dropdown-menu">
+								<li t-foreach="languages" t-as="lg">
+									<a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+		                                t-att-data-default-lang="editable and 'true' if lg[0] == website.default_lang_code else None"
+		                                t-att-data-lang="lg[0]"
+		                                class="js_change_lang"
+                                	>
+										<t t-esc="lg[1].split('/').pop()"/>
+									</a>
+								</li>
+								<li class="language-adder">
+									<t t-set="url_return" t-value="url_for('', '[lang]') + '?' + keep_query()"/>
+									<a t-attf-href="/web#action=base.action_view_base_language_install&amp;website_id=#{website.id}&amp;url_return=#{url_return}">
+										Add Language...
+									</a>
+								</li>
+				        	</ul>
+				        </li>
+				        <li class="dropdown">
+				        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">USD <span class="fa fa-angle-down"></span></a>
+				        	<ul class="dropdown-menu">
+				        		<li><a href="#">EUR</a></li>
+				        		<li><a href="#">USD</a></li>
+				        	</ul>
+				        </li>
+
+						<t t-if="website.user_id != user_id">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<t t-esc="user_id.name"/>
+									<span class="fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu">
+					        		<li><a href="/web">My Account</a></li>
+					        		<li><a href="#">My Wishlist</a></li>
+					        		<li><a href="#">Checkout</a></li>
+					        	</ul>
+
+							</li>
+							<li>
+								<a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Sign Out</a>
+							</li>
+						</t>
+
+						<t t-if="website.user_id == user_id">
+				        	<li>
+				        		<a href="/web/login">Sign In</a>
+				        	</li>
+						
+				        	<li>
+				        		<a href="/web/signup">Register</a>
+				        	</li>
+				        </t>
+				      </ul>
+				    </div>
+				  </div>
+				</nav>
+
+			</xpath>
+
+
+			
+
+		</template>
+
+
+	</data>
+</openerp>

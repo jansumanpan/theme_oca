@@ -1,0 +1,159 @@
+.header-top .navbar-nav>li>a{
+	padding: 13px 10px;
+	color: #fff;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+	color: #333;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+	background-color: transparent;
+}
+
+.header-top .navbar-nav>li>a{
+	border-right: 1px solid #4381a7;
+}
+
+.header-top .navbar-nav>li>a:last-child{
+	border-right: none;
+}
+
+.header-support{
+	padding: 13px 0px;
+}
+
+.navbar{
+	margin-bottom: 0px;
+}
+
+.navbar-brand:last-child{
+	display: none;
+}
+
+.header-content{
+	background-color: #2977a9;
+	padding: 22px 0 26px;
+	border-bottom: none;
+	z-index: 500;
+}
+
+@media (min-width: 768px) {
+	.navbar-nav.navbar-center {
+	    position: absolute;
+	    left: 50%;
+	    transform: translatex(-50%);
+	}
+}
+
+.navbar-default .navbar-nav>li>a{
+	color: #fff;
+}
+
+.search-group input[type="text"]{
+	width: 70%;
+	box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+.search-group select[name="category_id"]{
+	width: 30%;
+	border-right: none;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: none;
+	-webkit-appearance: none;
+}
+
+.header-bottom-category{
+	background-color: #fed700;
+}
+
+.header-bottom-category .dropdown{
+	margin: 10px -15px;
+}
+
+.header-bottom-category .dropdown button{
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	background: transparent;
+	border: none;
+}
+
+.header-bottom-category ul{
+	margin: 10px 0 0;
+	border-radius: 0;
+	box-shadow: none;
+	background-color: #434343;
+	border: none;
+	width: 100%;
+	color: #fff;
+}
+
+.header-bottom-category .dropdown-menu>li>a{
+	color: #fff;
+	padding: 10px 20px;
+}
+
+.btn.active:focus, .btn:active:focus, .btn:focus{
+	outline: none; 
+    
+}
+
+.btn.active, .btn:active{
+	box-shadow: none;
+}
+
+.btn-search{
+	color: #fff;
+	background-color: #e14646;
+	border-radius: 0px;
+	height: 34px;
+	padding-left: 30px;
+    padding-right: 30px;
+}
+
+.header-bottom-search{
+
+}
+
+.header-bottom-row{
+	background-color: #d7dce0;
+}
+
+.search-group{
+	margin: 10px 0px;
+}
+
+.search-group .fa-search{
+	padding: 0 15px 0 0;
+	font-size: 16px;"
+}
+
+
+/*Cart Dropdown CSS*/
+.product-list{
+	min-width: 400px;
+	padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

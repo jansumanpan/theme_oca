@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<!-- Owl Carousel Snippet -->
+		<template id="snippet_carousel_banner_oca" name="Owl Carousel Snippet">
+			<section class="carousel-slider">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3">
+										
+						</div>
+						<div class="col-lg-9" style="padding-left: 0px; padding-right: 0px;">
+							<div class="owl-carousel" id="owl-demo">
+								<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-1.jpg" alt=""/></div>
+								<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-2.jpg" alt=""/></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+
+		<template id="snippet_carousel_oca" inherit_id="website.snippets" name="snippet_carousel_oca">
+			<xpath expr="//div[@id='snippet_structure']" position="inside">
+				<t t-snippet="theme_oca.snippet_carousel_banner_oca" t-thumbnail="/theme_oca/static/src/img/snippet/product-category-slider.png"/>
+			</xpath>
+		</template>
+
+		<template id="carousel_oca_options" inherit_id="website.snippet_options" name="Modify Carousel Options">
+			<xpath expr="//div" position="after">
+				<div data-js="carousel_oca_options" data-selector=".carousel-slider" data-snippet-option-id="carousel_slider_opt">
+					<li>
+						
+					</li>
+				</div>
+			</xpath>
+		</template>
+
+		<!-- <template id="Oca_carousel_snippet" name="Oca Carousel Snippet" inherit_id="website.snippets">
+			<xpath expr="//div[@id='snippet_structure']">
+				<div>
+					<div class="oe_snippet_thumbnail">
+						<img src="/theme_oca/static/src/img/snippet/product-category-slider.png" class="oe_snippet_thumbnail_img"/>
+						<span class="oe_snippet_thumbnail_title">
+							Oca Carousel Snippet
+						</span>
+					</div>
+
+					<section class="oe_snippet_body Oca-carousel">
+						<div class="container">
+							<div class="row content">
+								<div class="col-md-3">
+												
+								</div>
+								<div class="col-md-9">
+									<div class="owl-carousel">
+										<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-1.jpg" alt=""/></div>
+										<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-2.jpg" alt=""/></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</xpath>
+		</template> -->
+
+		<!-- Three Image Snippet -->
+		<template id="snippets" inherit_id="website.snippets" name="three image snippets">
+			<xpath expr="//div[@id='snippet_structure']">
+				<div>
+					<div class="oe_snippet_thumbnail">
+						<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h2_slider2.jpg"
+	                     class="oe_snippet_thumbnail_img"/>
+	                    <span class="oe_snippet_thumbnail_title">
+	                    	Three Image Snippet
+	                    </span>
+	                </div>
+	                 <section class="three_image_snippet oe_snippet_body">
+	                 	<div class="container">
+	                 		<div class="row">
+	                 			<div class="col-md-4">
+	                 				<a href="#">
+	                 					<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h4_banner1.jpg"/>
+	                 				</a>
+	                 			</div>
+	                 			<div class="col-md-4">
+	                 				<a href="#">
+	                 					<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h4_banner1.jpg"/>
+	                 				</a>
+	                 			</div>
+	                 			<div class="col-md-4">
+	                 				<a href="#">
+	                 					<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h4_banner1.jpg" />
+	                 				</a>
+	                 			</div>
+	                 		</div>
+	                 	</div>
+	                 </section>
+	            </div>
+		    </xpath>
+		</template>
+
+
+    </data>
+</openerp>
