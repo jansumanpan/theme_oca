@@ -25,11 +25,8 @@
                         self.$target.append(data);
                         self.$('.active.my-test').slice(1).removeClass('active');
                         var $li = self.$('.my-test');
-                        self.$('.active.my-test').each(function(index, el) {
-                            var self = $(this);
-                                var $data_id = self.find('a').data('id')
-                                var display_prod = self.closest('.psb-inner').find('.multi_hide .owl-carousel')
-                                $.post("/theme_oca/oca_get_prod", {'data_id':parseInt($data_id)})
+                        function load_products_carousel($data_id,display_prod){
+                             $.post("/theme_oca/oca_get_prod", {'data_id':parseInt($data_id)})
                                     .then(function (data) {
                                         display_prod.empty();
                                         display_prod.append(data)
@@ -55,40 +52,24 @@
                                             });
 
                                     });
+
+                        }
+                        self.$('.active.my-test').each(function(index, el) {
+                            var self = $(this);
+                                var $data_id = self.find('a').data('id')
+                                var display_prod = self.closest('.psb-inner').find('.multi_hide .owl-carousel')
+                                load_products_carousel($data_id,display_prod);
                         });
                         $li.on('click', function() 
                             {
                                 var self = $(this);
                                 var $data_id = self.find('a').data('id')
                                 var display_prod = self.closest('.psb-inner').find('.multi_hide .owl-carousel')
-                                $.post("/theme_oca/oca_get_prod", {'data_id':parseInt($data_id)})
-                                    .then(function (data) {
-                                        display_prod.empty();
-                                        display_prod.append(data)
-                                        $('.owl-carousel').trigger('destroy.owl.carousel');
-                                          $('.owl-carousel').owlCarousel({
-                                                margin: 10,
-                                                responsiveClass: true,
-                                                items: 4,
-                                                loop: true,
-                                                stopOnHover: true,
-                                                navigation: true,
-                                                responsive: {
-                                                    0: {
-                                                        items: 1,
-                                                    },
-                                                    420: {
-                                                        items: 2,
-                                                    },
-                                                    768: {
-                                                        items: 3,
-                                                    }
-                                                },
-                                            });
-
-                                    });
+                                load_products_carousel($data_id,display_prod);
+                                
                             }
                         )
+
 
 
                     }

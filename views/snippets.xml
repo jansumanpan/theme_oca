@@ -78,7 +78,7 @@
 			</template>
 
 			<template id="display_categories">
-				<div class="container">
+				<div class="container" style="overflow:hidden">
 				                <div class="title-block">
 					                <h4 class="section-title style1" t-if="not slider_header">
 					                    <span>No Display</span>
@@ -94,17 +94,20 @@
 				                	<div class="row">
 				                    	<div class="lns-post">
 					                         <div class="psb-inner">
-					                            <ul id="multi_dynamic_slider_tabs" class="nav nav-tabs">
+					                         	<div class="tab-header col-md-2 col-sm-2" t-attf-style="padding-bottom: 1000px;margin-bottom: -1000px;padding-right:0px;padding-left:0px;background-color:#{slider_header.color};">
+					                         		 <ul id="multi_dynamic_slider_tabs" class="nav">
 
-					                                <t t-foreach="slider_categ_ids" t-as="slider_categ_id">
-					                                    <li class="active my-test">
-					                                        <a href="#multi-collection1" data-toggle="tab" t-attf-data-id="#{slider_categ_id.id}">
-					                                            <t t-esc='slider_categ_id.name'/>
-					                                        </a>
-					                                    </li>
-					                                </t>
-					                            </ul>
-					                            <div class="tab-content">
+						                                <t t-foreach="slider_categ_ids" t-as="slider_categ_id">
+						                                    <li class="active my-test">
+						                                        <a href="#multi-collection1" data-toggle="tab" t-attf-data-id="#{slider_categ_id.id}">
+						                                            <t t-esc='slider_categ_id.name'/>
+						                                        </a>
+						                                    </li>
+						                                </t>
+					                            	</ul>
+					                         	</div>
+					                           
+					                            <div class="tab-content col-md-10 col-sm-10" style="padding-left:0px">
 					                            	<div class="multi_hide" id="multi-collection1">
 						                                        <div class="owl-carousel">
 						                                        </div>

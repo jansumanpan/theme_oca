@@ -40,6 +40,7 @@
                     <group>
                         <field name="name"/>
                         <field name="active"/>
+                        <field name="color" widget="color"/>
                                      <field name="category_product_ids">
                                         		<tree string="Categories" editable="bottom">
                                         			<field name="public_cat_id"/>

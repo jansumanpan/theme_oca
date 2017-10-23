@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['website_less','website_sale','website','stock','sale','oepetstore'],
+    'depends': ['website_less','website_sale','website','stock','sale','web_widget_color','oepetstore'],
 
     # always loaded
     'data': [
