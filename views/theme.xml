@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+    	<template id="oca_website_submenu" inherit_id="website.submenu">
+    		<xpath expr="//li[1]" position="attributes">
+    			 <!-- <attribute name="t-if">not submenu.child_id and not submenu.is_megamenu</attribute> -->
+    			  <attribute name="t-att-class">((submenu.url and submenu.url != '/' and request.httprequest.path.startswith(submenu.url)) or
+				         request.httprequest.path == submenu.url) and 'active'</attribute>
+          		   <!--  <li t-if="not submenu.child_id" t-att-class="
+				        ((submenu.url and submenu.url != '/' and request.httprequest.path.startswith(submenu.url)) or
+				         request.httprequest.path == submenu.url) and 'active'
+				        ">
+				        <a t-att-href="(website.menu_id.child_id[0] == submenu) and '/' or submenu.url" t-ignore="true" t-att-target="'_blank' if submenu.new_window else None">
+				            <span t-field="submenu.name"/>
+				        </a>
+				    </li> -->
+        	</xpath>
+        	<xpath expr="//li[2]" position="attributes">
+        		 <attribute name="t-attf-class">dropdown #{
+				        ((submenu.url and submenu.url != '/' and [1 for submenu in submenu.child_id if request.httprequest.path.startswith(submenu.url)]) or
+				         request.httprequest.path == submenu.url)
+				        } {{classname}}</attribute>
+          			 <!--  <li t-if="submenu.child_id" t-attf-class="dropdown #{
+				        ((submenu.url and submenu.url != '/' and [1 for submenu in submenu.child_id if request.httprequest.path.startswith(submenu.url)]) or
+				         request.httprequest.path == submenu.url)
+				        } {{classname}}">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				            <span t-field="submenu.name"/> <span t-attf-class="{{classname or 'caret'}}" t-ignore="true"></span>
+				        </a>
+				        <ul class="dropdown-menu" role="menu">
+				            <t t-foreach="submenu.child_id" t-as="submenu">
+				                <t t-call="website.submenu">
+				                    <t t-set="classname">dropdown-submenu</t>
+				                </t>
+				            </t>
+				        </ul>
+				    </li> -->
+        	</xpath>
+        	<xpath expr="//li[2]/a[1]/span[2]" position="attributes">
+        		<!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				            <span t-field="submenu.name"/> <span t-attf-class="{{classname or 'caret'}}" t-ignore="true"></span>
+				</a> -->
+				<attribute name="t-attf-class">{{classname}}</attribute>
+        	</xpath>
+        	<xpath expr="//li[2]/ul[1]/t/t[@t-call='website.submenu']" position="inside">
+        	<!-- 	 <ul class="dropdown-menu" role="menu">
+				            <t t-foreach="submenu.child_id" t-as="submenu">
+				                <t t-call="website.submenu"> -->
+				                    <t t-set="classname">dropdown-submenu</t>
+				         <!--        </t>
+				            </t>
+				        </ul> -->
+        	</xpath>
+   
+		</template>
+    </data>
+</openerp>

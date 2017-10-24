@@ -22,9 +22,17 @@ class ProductCategoryLine(models.Model):
   public_cat_id = fields.Many2one('product.public.category', string="Category Reference")
   product_id = fields.Many2many('product.template', string="Products to Display")
   slider_id = fields.Many2one('oca.slider.config')
-# class ProductPublicCategory(models.Model):
-#    _inherit = 'product.public.category'
 
-#    product_id = fields.One2many('product.category.line','product_id', string="Products")
+class WebsiteMenu(models.Model):
+   _inherit = 'website.menu'
+
+   is_megamenu = fields.Boolean(string='Is megamenu...?')
+   megamenu_type = fields.Selection([('2_col', '2 Columns'),
+                                      ('3_col', '3 Columns'),
+                                      ('4_col', '4 Columns'),
+                                      ('5_col', '5 Columns')],
+                                     default='3_col',
+                                     string="Megamenu type")
+  
 
 
