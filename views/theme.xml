@@ -5,31 +5,13 @@
 			<div id="cart_total" t-if="website_sale_order">
 				<div class="product-desc">
 					<t t-foreach="website_sale_order.website_order_line" t-as="line">
-						<div class="pd-row" style="
-								    display: inline-block;
-								    width: 100%;
-								    vertical-align: top;
-								    position: relative;
-								    padding-bottom: 40px;
-								    border-bottom: 1px solid #e6e6e6;
-								">
-							<span class="pd-img" style="
-									    float: left;
-									    width: 30%;
-									    margin: 0;
-									    max-height: 65px;
-									">
+						<div class="pd-row">
+							<span class="pd-img">
 								<a t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">
 									<span t-field="line.product_id.image_medium" t-field-options='{"widget": "image", "class": "img-rounded", "alt-field": "name"}'/>
 								</a>
 							</span>
-							<div class="pd-details" style="
-									    text-align: left;
-									    padding-left: 20px;
-									    padding-top: 20px;
-									    float: left;
-									    width: 70%;
-									">
+							<div class="pd-details">
 								<p class="pd-name">
 									<a t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">
 										<t t-esc="line.product_id.name"/>
@@ -44,22 +26,8 @@
 						</div>
 					</t>
 					<div class="view-cart">
-						<button onclick="location.href='/shop/cart'" class="btn btn-default" style="display: block;
-										    height: 50px;
-										    line-height: 50px;
-										    margin-bottom: 15px;
-										    padding: 0 20px;
-										    width: 100%;
-										    font-weight: bold;
-										    font-size: 100%;
-										    font-family: 'Open Sans';
-										    margin-top: 15px;
-										    color: #fff;
-										    background-color: #aaaaaa;
-										    border-color: #808080;
-										    border-width: 0 0 2px;
-										    border-style: solid;">
-								<span class="fa fa-shopping-cart" style="font-size: 20px;"/>
+						<button onclick="location.href='/shop/cart'" class="go-to-cart btn btn-default">
+								<span class="fa fa-shopping-cart view-edit-cart"/>
 					    				View And Edit Cart
 						</button>
 					</div>
@@ -70,9 +38,9 @@
 		<template id="custom_header" inherit_id="website.layout" name="OCA header">
 			
 			<!-- Hide main navbar Cart -->
-			<!-- <xpath expr="//ul[@id='top_menu']//a[@href='/shop/cart']" position="attributes">
+			<xpath expr="//ul[@id='top_menu']//a[@href='/shop/cart']" position="attributes">
 	            <attribute name='style'>display:none;</attribute>
-	        </xpath> -->
+	        </xpath>
 
 			<!-- header's Divider -->
 			<xpath expr="//header//li[@class='divider']" position="replace">
@@ -91,7 +59,7 @@
 
 			<!-- Add another menu to bottom of main -->
 			<xpath expr="//div[@class='navbar navbar-default navbar-static-top']" position="after">
-				<div class="container-fluid header-bottom" style="background-color: #2977a9;">
+				<div class="container-fluid header-bottom">
 					<div class="container">
 						<div class="row header-bottom-row">
 							<div class="col-lg-3 header-bottom-category">
@@ -157,39 +125,25 @@
 			<!-- Add items on the right of main nav -->
 			<xpath expr="//ul[@id='top_menu']" position="after">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Compare</a></li>
-					<li><a href="#">Wishlist</a></li>
+					<li><a href="#"><span class="fa fa-refresh compare"></span></a></li>
+					<li><a href="#"><span class="fa fa-heart-o wishlist"></span></a></li>
 					<li class="cart-item dropdown">
 						<a href="/shop/cart" title="Checkout" class="top-link-checkout dropdown-toggle" data-toggle="dropdown">
-							<span class="fa fa-shopping-cart" style="font-size: 25px;">
+							<span class="fa fa-shopping-cart checkout">
 								<t t-set="website_sale_order" t-value="website.sale_get_order()"/>
-								<span style=" color: #fff;
-										    background-color: #e14646;
-										    border-radius: 50%;
-										    height: 19px;
-										    position: absolute;
-										    text-align: center;
-										    bottom: 10px;
-										    width: 19px;
-										    line-height: 18px;
-										    z-index: 2;
-										    min-width: auto;
-										    font-size: 13px;
-										    margin-left: -7px;
-										    font-family: 'Open Sans';
-											" class="cart-quantity" t-esc="website_sale_order and website_sale_order.cart_quantity or 0"/>
+								<span class="cart-quantity" t-esc="website_sale_order and website_sale_order.cart_quantity or 0"/>
 							</span>
 							<span class="minicart-text">
 								<strong>
 									<!-- <span style="font-family: 'Open Sans'; margin-left: 13px;" t-field="website.sale_get_order().amount_total" t-field-options='{"widget": "monetary","from_currency": "display_currency": "website.currency_id"}'/> -->
 									<t t-if="website.sale_get_order()">
-										<span t-esc="website.sale_get_order().amount_total or 0" style="font-family: 'Open Sans'; margin-left: 13px;"/>
-										<span t-esc="website.sale_get_order().pricelist_id.currency_id.symbol or ''" style="font-family: 'Open Sans';"/>
+										<span class="cart-amount" t-esc="website.sale_get_order().amount_total or 0"/>
+										<span class="cart-currency" t-esc="website.sale_get_order().pricelist_id.currency_id.symbol or ''"/>
 									</t>
 								</strong>
 							</span>
 						</a>
-						<div class="dropdown-menu product-list" style="min-width: 400px; padding: 20px; text-align: center;">
+						<div class="dropdown-menu product-list">
 					    	<div t-if="not website_sale_order or not website_sale_order.website_order_line" class="yam-content">
 					    		You have no items in your shopping cart.
 					    	</div>
@@ -198,13 +152,8 @@
 					    			<!-- <t t-esc="website_sale_order and website_sale_order.cart_quantity or ''"></t>ITEMS CART SUBTOTAL: <t t-esc="website.sale_get_order().pricelist_id.currency_id"/><t t-esc="website.sale_get_order().amount_total"/> -->
 									
 									<strong>
-										<span style="color: #e5534c;" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" ></span> ITEMS CART SUBTOTAL: 
-						    			<span style="color: #e5534c;" t-field="website.sale_get_order().amount_total" t-field-options='{
-	                                              "widget": "monetary",
-	                                              "from_currency": "website.sale_get_order().pricelist_id.currency_id",
-	                                              "display_currency": "website.currency_id"
-	                                    }'>
-
+										<span class="cart-number-n-amount" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" ></span> ITEMS CART SUBTOTAL: 
+						    			<span class="cart-number-n-amount" t-field="website.sale_get_order().amount_total" t-field-options='{ "widget": "monetary", "from_currency": "website.sale_get_order().pricelist_id.currency_id", "display_currency": "website.currency_id" }'>
 	                                	</span>
                                 	</strong>
 					    		</div>
@@ -216,21 +165,7 @@
 						    			</a>
 					    			</div> -->
 
-					    			<button onclick="location.href= '/shop/checkout';" class="btn btn-default" style="    			display: block;
-										    height: 50px;
-										    line-height: 50px;
-										    margin-bottom: 15px;
-										    padding: 0 20px;
-										    width: 100%;
-										    font-weight: bold;
-										    font-size: 100%;
-										    font-family: 'Open Sans';
-										    margin-top: 15px;
-										    color: #333e48;
-										    background-color: #fed700;
-										    border-color: #dfbd00;
-										    border-width: 0 0 2px;
-										    border-style: solid;">
+					    			<button onclick="location.href= '/shop/checkout';" class="go-to-checkout btn btn-default">
 					    				<span class="fa fa-pencil-square-o" style="font-size: 20px;"/>
 					    				Go To Checkout
 					    			</button>
@@ -253,8 +188,8 @@
 
 			<!-- Custom top header -->
 			<xpath expr="//div[@id='wrapwrap']/header/div" position="before">
-				<nav class="navbar header-top" style="background-color: #146191; border-radius: 0px;">
-				  <div class="container" style="color: #fff;">
+				<nav class="navbar header-top">
+				  <div class="container heading-top" style="color: #fff;">
 				    <div class="col-lg-6 header-support">
 						<span class="fa fa-headphones"></span>
 						Support <span t-field="res_company.phone"/> - Email: <span t-field="res_company.email"/>

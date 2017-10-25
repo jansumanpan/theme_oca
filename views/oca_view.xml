@@ -41,18 +41,131 @@
                         <field name="name"/>
                         <field name="active"/>
                         <field name="color" widget="color"/>
-                                     <field name="category_product_ids">
-                                        		<tree string="Categories" editable="bottom">
-                                        			<field name="public_cat_id"/>
-                                        			<field name="name"/>
-                                        			<field name="product_id" widget="many2many_tags" options="{'no_create_edit': True}"/>
-                                        		</tree>
-                                      </field>
+                        <field name="category_product_ids">
+                            <tree string="Categories" editable="bottom">
+                                <field name="public_cat_id"/>
+                                <field name="name"/>
+                                <field name="product_id" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+
+    <!--Multi Slider Action -->
+    <record id="oca_multi_slider_action" model="ir.actions.act_window">
+        <field name="name">Multi Slider</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">oca.multi.product.config</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Multi Product Slider.
+            </p>
+        </field>
+    </record>
+
+    <!-- Multi Slider List View-->
+    <record id="oca_multi_slider_list_view" model="ir.ui.view">
+        <field name="name">oca.multi.slider.list.view</field>
+        <field name="model">oca.multi.product.config</field>
+        <field name="arch" type="xml">
+            <tree string="Slider">
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Multi Slider Form View-->
+    <record id="oca_multi_slider_form_view" model="ir.ui.view">
+        <field name="name">oca.slider.form.view</field>
+        <field name="model">oca.multi.product.config</field>
+        <field name="arch" type="xml">
+            <form string="Multi Slider">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Slider Configuraton">
+                        <field name="rows_number"/>
+                        <field name="col_number"/>
+                    </group>
+                    <notebook>
+                        <page string="Collections">
+                            <field name="tab_line">
+                                <tree string="Collection Lines" editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="tab_name"/>
+                                    <field name="product_id" widget="many2many_tags"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Product Deals -->
+    <record id="oca_deal_action" model="ir.actions.act_window">
+        <field name="name">Deal Slider</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">oca.product.deals</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Deals.
+            </p>
+        </field>
+    </record>
+
+    <!-- Product Deals List View-->
+    <record id="oca_deals_list_view" model="ir.ui.view">
+        <field name="name">oca.deals.list.view</field>
+        <field name="model">oca.product.deals</field>
+        <field name="arch" type="xml">
+            <tree string="Slider">
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Product Deals Form View-->
+    <record id="oca_deals_form_view" model="ir.ui.view">
+        <field name="name">oca.deals.form.view</field>
+        <field name="model">oca.product.deals</field>
+        <field name="arch" type="xml">
+            <form string="Multi Slider">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Deal Lines">
+                            <field name="deals_line">
+                                <tree string="Deal Lines" editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="product_countdown"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 
     <!-- Menu in slider config -->
     <menuitem id="oca_slider_menu"
@@ -60,5 +173,10 @@
               action="oca_slider_action"
               parent="theme_oca.menu_slider_config"
               sequence="60"/>
+    <menuitem id="oca_multi_slider_menu" name="Multi Product Slider Configuration" action="oca_multi_slider_action" parent="theme_oca.menu_slider_config" sequence="80"/>
+
+    <menuitem id="oca_deal_menu" name="Deals Configuration" action="oca_deal_action" parent="theme_oca.menu_slider_config" sequence="100"/>
+
+
     </data>
 </openerp>

@@ -15,6 +15,30 @@ _logger = logging.getLogger(__name__)
 
 class OcaSliderSettings(http.Controller):
 
+	@http.route(['/theme_oca/oca_multi_slider_settings'], type="json", auth="public", website=True)
+	def index1(self):
+		values = []
+		option = request.env['oca.multi.product.config'].sudo().search([])
+		_logger.warning(option)
+		for record in option:
+			values.append({'id': record.id, 'name': record.name})
+		return values
+
+	@http.route(['/theme_oca/oca_multi_get_tabs'], type='http', auth='public', website=True)
+	def get_oca_multi_tabs(self, **post):
+		if post.get('multi-slider-type'):
+			multi_slider_header = request.env['oca.multi.product.config'].sudo().search([('id','=',int(post.get('multi-slider-type')))])
+			multi_slider_tab_ids = request.env['oca.tab.line'].sudo().search([('line_id', '=', multi_slider_header.id)])
+			values = {
+				'multi_slider_header': multi_slider_header,
+				'multi_slider_tab_ids': multi_slider_tab_ids
+				}
+			return request.website.render("theme_oca.multi_slider_tabs",values)
+
+	# @http.routse(['/theme_oca/oca_multi_get_prod'], type='http', auth='public', website=True)
+	# def get_oca_multi_prod(self, **post):
+	# 	if post.get()
+
 	@http.route(['/theme_oca/oca_slider_settings'], type='json', auth='public', website=True)
 	def index(self):
 		values = []

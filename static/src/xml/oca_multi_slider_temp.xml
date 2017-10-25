@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="theme_oca.oca_multi_slider_temp">
+        <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal" contenteditable="False" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" id="s_media_block_modal">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Multi Slider &amp; Deals Config</h4>
+                    </div>
+                    <div class="modal-body" contenteditable="false">
+                        <form class="form-horizontal container-fluid" role="form">
+                            <div class="col-sm-12 form-group">
+                                <label for="multi_slider_type" class="col-sm-3 control-label">Slider Type</label>
+                                <div class="col-sm-9">
+                                    <select id="multi_slider_type" class="form-control" name="multi_slider_type">
+                                    </select>
+                                </div>
+                                <label for="deals_type" class="col-sm-3 control-label">Deals Type</label>
+                                <div class="col-sm-9">
+                                    <select name="deals_slider_type" id="deals_slider_type" class="form-control"></select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal" id="cancel">Cancel</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="snippnet_submit">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

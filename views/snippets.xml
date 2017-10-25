@@ -2,18 +2,18 @@
 <openerp>
     <data>
 
-		<!-- Owl Carousel Snippet Starting -->
-		<template id="snippet_carousel_banner_oca" name="Owl Carousel Snippet">
+		<!-- Oca Carousel Snippet Starting -->
+		<!-- <template id="snippet_carousel_banner_oca" name="Owl Carousel Snippet">
 			<section class="carousel-slider">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-3">
-										
+						<div class="col-md-3">
+							
 						</div>
-						<div class="col-lg-9" style="padding-left: 0px; padding-right: 0px;">
-							<div class="owl-carousel">
-								<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-1.jpg" alt=""/></div>
-								<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-2.jpg" alt=""/></div>
+						<div class="col-md-9">
+							<div class="custom-carousel owl-carousel">
+								<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-1.jpg"/></div>
+								<div class="item"><img src="http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-2.jpg"/></div>
 							</div>
 						</div>
 					</div>
@@ -27,44 +27,121 @@
 			</xpath>
 		</template>
 
-		<template id="carousel_oca_options" inherit_id="website.snippet_options" name="Modify Carousel Options">
+		<template id="carousel_oca_snippet_options" inherit_id="website.snippet_options" name="Modify Carousel Options">
 			<xpath expr="//div" position="after">
-				<div data-js="carousel_oca_options" data-selector=".carousel-slider" data-snippet-option-id="carousel_slider_opt">
-					<li>
-						
-					</li>
+				<div data-js="carousel_oca" data-selector=".carousel-slider" data-snippet-option-id="carousel_oca">
+
+				</div>
+			</xpath>
+		</template> -->
+
+		<template id="oca_banner_snippets" inherit_id="website.snippets" name="Oca Banner Snippets">
+			<xpath expr="//div[@id='snippet_structure']">
+				<div>
+					<div class="oe_snippet_thumbnail">
+						<img src="/theme_oca/static/src/img/snippet/product-category-slider.png" class="oe_snippet_thumbnail_img"/>
+						<span class="oe_snippet_thumbnail_title">
+							Oca Banner Snippet
+						</span>
+					</div>
+					<section class="oca-banner" style="height: 480px; overflow: hidden;">
+				        <div class="container">
+				        	<div class="row content">
+				        		<div class="col-md-3 content">
+
+				        		</div>
+				        		<div class="col-md-9" style="padding: 0px;">
+				        			<div class="carousel slide" id="myCarousel4" style="height: 480px; overflow: hidden;">
+				        				<ol class="carousel-indicators">
+				        					<li class="active" data-slide-to="0" data-target="#myCarousel4"/>
+				        					<li data-slide-to="1" data-target="#myCarousel4"/>
+				        				</ol>
+				        				<div class="carousel-inner">
+				        					<div class="item oe_custom_bg oe_img_bg active" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-2.jpg&quot;);">
+				        						<div class="container">
+				        							<div class="row content">
+				        								<div class="carousel-content col-sm-12 mb0 col-md-offset-1 col-md-5">
+				        									<h3>ALL-IN-ONE TOUCHSCREEN</h3>
+				        									<h3>
+				        										<font class="text-blue">LENOVO C40</font>
+				        									</h3>
+				        									<h3>
+				        										<font class="text-blue">UP TO 70% OFF IN THE NEW</font>
+				        									</h3>
+				        									<h3>
+				        										<font class="text-blue">DESKTOPS COLLECTION</font>
+				        									</h3>
+				        									<p>
+				        										<font class="text-blue">
+				        											<a class="btn btn-danger " href="/page/website.contactus">Shop Now</a>
+				        										</font>
+				        									</p>
+				        								</div>
+				        							</div>
+				        						</div>
+				        					</div>
+				        					<div class="item oe_custom_bg oe_img_bg" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;http://alothemes.com/demo2/savio/pub/media/magiccart/magicslider/s/l/slide1-1.jpg&quot;);">
+				        						<div class="container">
+				        							<div class="row content">
+				        								<div class="carousel-content col-sm-12 mb16 col-md-offset-1 col-md-5">
+				        									<h2>SAMSUNG GALAXY</h2>
+				        									<h3>NOTE 4 N9</h3>
+				        									<h3>UP TO 70% OFF&amp;nbsp; IN THE NEW</h3>
+				        									<h3>SMARTPHONE COLLECTION</h3>
+				        									<div/>
+				        									<p>
+				        										<a class="btn btn-danger " href="/page/website.contactus">Shop Now</a>
+				        									</p>
+				        								</div>
+				        							</div>
+				        						</div>
+				        					</div>
+				        				</div>
+				        				<div class="carousel-control left" data-slide="prev" data-target="#myCarousel4" href="#myCarousel4" style="width: 10%">
+				        					<i class="fa fa-chevron-left"/>
+				        				</div>
+				        				<div class="carousel-control right" data-slide="next" data-target="#myCarousel4" href="#myCarousel4" style="width: 10%">
+				        					<i class="fa fa-chevron-right"/>
+				        				</div>
+				        			</div>
+				        		</div>
+				        	</div>
+				        </div>
+				    </section>
+
+
 				</div>
 			</xpath>
 		</template>
-		<!-- Owl Carousel Snippet Ending -->
+		<!-- Oca Carousel Snippet Ending -->
 
 		<!-- Three Image Snippet -->
-		<template id="three_image_snippets" inherit_id="website.snippets" name="three image snippets">
+		<template id="oca_three_image_snippets" inherit_id="website.snippets" name="Oca three image snippets">
 			<xpath expr="//div[@id='snippet_structure']">
 				<div>
 					<div class="oe_snippet_thumbnail">
 						<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h2_slider2.jpg"
 	                     class="oe_snippet_thumbnail_img"/>
 	                    <span class="oe_snippet_thumbnail_title">
-	                    	Three Image Snippet
+	                    	Oca Image Snippet
 	                    </span>
 	                </div>
 	                 <section class="three_image_snippet oe_snippet_body">
-	                 	<div class="container">
+	                 	<div class="container" style="padding: 0px;">
 	                 		<div class="row">
 	                 			<div class="col-md-4">
 	                 				<a href="#">
-	                 					<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h4_banner1.jpg"/>
+	                 					<img src="http://via.placeholder.com/350x195"/>
 	                 				</a>
 	                 			</div>
 	                 			<div class="col-md-4">
 	                 				<a href="#">
-	                 					<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h4_banner1.jpg"/>
+	                 					<img src="http://via.placeholder.com/350x195"/>
 	                 				</a>
 	                 			</div>
 	                 			<div class="col-md-4">
 	                 				<a href="#">
-	                 					<img src="https://ortopg.com/pub/media/wysiwyg/m2themes/h4_banner1.jpg" />
+	                 					<img src="http://via.placeholder.com/350x195" />
 	                 				</a>
 	                 			</div>
 	                 		</div>
@@ -77,7 +154,7 @@
 
 		<!-- Oca Slider Snippet Starting -->
 		<template id="t_oca_snippets" name="Oca Slider">
-			<section class="oca_snip" style="background-color:#f7f7f7;" data-multi-cat-slider-type="" contentEditable="false">
+			<section class="oca_snip" data-multi-cat-slider-type="" contentEditable="false">
 				<div class="container">
 					<div class="row our-categories">
 						<div class="col-md-12">
@@ -107,10 +184,80 @@
 		</template>
 		<!-- Oca Slider Snippet Ending -->
 
+		<!-- Oca Multi Slider Starting -->
+		<template id="t_oca_multi_slider_snippets" name="Oca Multi Slider">
+			<section class="oca_multi_snip" contentEditable="false" data-multi-tab-slider-type="">
+				<div class="container">
+					<div class="row multi-slider-tabs">
+						<div class="col-md-12">
+							<div class="title-block">
+								<h4 id="snippet-title" class="section-title"><span>Multi Slider Product Slider and Deals</span></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+
+		<template id="oca_multi_slider_snippets" name="Oca Multi Slider Snippet" inherit_id="website.snippets">
+			<xpath expr="//div[@id='snippet_structure']" position="inside">
+				<t t-snippet="theme_oca.t_oca_multi_slider_snippets" t-thumbnail="/theme_oca/static/src/img/snippet/promo-snippet.png"/>
+			</xpath>
+		</template>
+
+		<template id="oca_multi_slider_options" inherit_id="website.snippet_options" name="Modify Options">
+			<xpath expr="//div" position="after">
+				<div data-js="oca_multi_snippet_option" data-selector=".oca_multi_snip" data-snippet-option-id="oca_multi_snippet_option">
+					<li data-multi_tab_slider="">
+						<a class="oca_multi_snip">Modify</a>
+					</li>
+				</div>
+			</xpath>
+		</template>
+
+		<!-- Oca Multi Slider Ending -->
 		
-		<!-- CONTROLLERS STARTING -->
+		<!-- CONTROLLERS STARTING OR VIEWS TO BE CALLED -->
+		<template id="multi_slider_tabs">
+			<div class="container" style="overflow: hidden;">
+				<div class="title-block">
+					<h4 class="section-title" t-if="not multi_slider_header">
+						<span>No Display</span>
+					</h4>
+					<h4 class="section-title" t-if="multi_slider_header">
+						<span>
+							<t t-esc="multi_slider_header.name"/>
+						</span>
+					</h4>
+				</div>
+				<div class="tabs-inner">
+					<ul class="nav nav-tabs">
+						<t t-foreach="multi_slider_tab_ids" t-as="tabs">
+							<li class="my-tabs">
+								<a t-attf-href="##{tabs.id}" t-attf-data-id="#{tabs.id}" data-toggle="tab">
+									<t t-esc="tabs.tab_name"/>
+								</a>
+							</li>
+						</t>
+					</ul>
+					<div class="tab-content">
+						<t t-foreach="multi_slider_tab_ids" t-as="tabs">
+							<div t-attf-id="#{tabs.id}" class="tab-pane fade">
+								<div class="multi-prod-slider">
+									<!-- <t t-foreach="multi_slider_tab_ids" t-as="products">
+										<div><t t-esc="products.line_id.product_template_id"/></div>
+									</t> -->
+								</div>
+							</div>
+						</t>
+					</div>
+				</div>
+			</div>
+		</template>
+
+
 		<template id="display_categories">
-			<div class="container" style="overflow:hidden">
+			<div class="container" style="overflow:hidden;">
 				<div class="title-block">
 					<h4 class="section-title style1" t-if="not slider_header">
 						<span>No Display</span>
