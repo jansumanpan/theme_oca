@@ -100,8 +100,13 @@
                         <group attrs="{'invisible': ['|', ('is_megamenu', '=', False), ('parent_id', '=', False)]}">
                             <field name="megamenu_type"/>
 
-                           <!--  <field name="megamenu_bg"/>
-                            <field name="megamenu_bg_img_color"
+                            <field name="website_menu_line_id">
+                                <tree string="Categories" editable="bottom">
+                                    <field name="cat_id_root"/>
+                                    <field name="cat_id_child" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                                </tree>
+                            </field>
+                          <!--   <field name="megamenu_bg_img_color"
                                    widget="radio"
                                    attrs="{'invisible': [('megamenu_bg', '=', False)]}"/>
                             <field name="megamenu_bg_image"

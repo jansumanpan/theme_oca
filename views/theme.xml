@@ -5,7 +5,7 @@
     <data>
     	<template id="oca_website_submenu" inherit_id="website.submenu">
     		<xpath expr="//li[1]" position="attributes">
-    			 <!-- <attribute name="t-if">not submenu.child_id and not submenu.is_megamenu</attribute> -->
+    			 <attribute name="t-if">not submenu.child_id and not submenu.is_megamenu</attribute>
     			  <attribute name="t-att-class">((submenu.url and submenu.url != '/' and request.httprequest.path.startswith(submenu.url)) or
 				         request.httprequest.path == submenu.url) and 'active'</attribute>
           		   <!--  <li t-if="not submenu.child_id" t-att-class="
@@ -18,10 +18,7 @@
 				    </li> -->
         	</xpath>
         	<xpath expr="//li[2]" position="attributes">
-        		 <attribute name="t-attf-class">dropdown #{
-				        ((submenu.url and submenu.url != '/' and [1 for submenu in submenu.child_id if request.httprequest.path.startswith(submenu.url)]) or
-				         request.httprequest.path == submenu.url)
-				        } {{classname}}</attribute>
+        		 <attribute name="t-attf-class">dropdown #{((submenu.url and submenu.url != '/' and [1 for submenu in submenu.child_id if request.httprequest.path.startswith(submenu.url)]) or request.httprequest.path == submenu.url)} {{classname}}</attribute>
           			 <!--  <li t-if="submenu.child_id" t-attf-class="dropdown #{
 				        ((submenu.url and submenu.url != '/' and [1 for submenu in submenu.child_id if request.httprequest.path.startswith(submenu.url)]) or
 				         request.httprequest.path == submenu.url)
@@ -38,13 +35,14 @@
 				        </ul>
 				    </li> -->
         	</xpath>
-        	<xpath expr="//li[2]/a[1]/span[2]" position="attributes">
+        	<xpath expr="//li[2]/a/span[last()]" position="attributes">
         		<!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				            <span t-field="submenu.name"/> <span t-attf-class="{{classname or 'caret'}}" t-ignore="true"></span>
 				</a> -->
-				<attribute name="t-attf-class">{{classname}}</attribute>
+				<attribute name="class"></attribute>
+				<attribute name="t-attf-class">{{classname or 'fa fa-angle-down'}}</attribute>
         	</xpath>
-        	<xpath expr="//li[2]/ul[1]/t/t[@t-call='website.submenu']" position="inside">
+        	<xpath expr="//li[2]/ul/t/t[@t-call='website.submenu']" position="inside">
         	<!-- 	 <ul class="dropdown-menu" role="menu">
 				            <t t-foreach="submenu.child_id" t-as="submenu">
 				                <t t-call="website.submenu"> -->
@@ -52,6 +50,20 @@
 				         <!--        </t>
 				            </t>
 				        </ul> -->
+        	</xpath>
+        	<xpath expr="//li[last()]" position="after">
+	<!-- <li t-if="submenu.is_megamenu" t-att-class="'li-mega-menu mm_icon' if submenu.menu_icon and submenu.menu_icon_image else 'li-mega-menu'"> -->
+        		<li t-if="submenu.is_megamenu" t-att-class="'li-mega-menu' if submenu.is_megamenu else ''">
+        			 <a t-att-href="'%s' % (submenu.url) if submenu.url else ''" t-att-target="'_blank' if submenu.new_window else ''">
+	                    <!-- <t t-if="submenu.menu_icon and submenu.menu_icon_image">
+	                        <img t-att-src="website.image_url(submenu, 'menu_icon_image', '30x30')"
+	                                                             class="img-responsive icon"
+	                                                             t-att-alt="submenu.name"/>
+	                    </t> -->
+	                    <span t-field="submenu.name"/> <span class="fa fa-angle-down" t-ignore="true"></span>
+                	</a>
+        		</li>
+        		
         	</xpath>
    
 		</template>
