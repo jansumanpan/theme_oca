@@ -4,6 +4,8 @@
 
         <template id="assets_editor" inherit_id="website.assets_editor" name="theme_oca assets editor">
             <xpath expr="." position="inside">
+                
+                <script type="text/javascript" src="/theme_oca/static/src/js/website_menu_override.js"/>
                 <script type="text/javascript" src="/theme_oca/static/src/js/snippet_option.js"/>
             </xpath>
         </template>
@@ -15,6 +17,7 @@
                     <link rel="stylesheet" href="/theme_oca/static/src/css/owl.carousel.min.css"/>
                     <link rel="stylesheet" href="/theme_oca/static/src/css/theme_oca.css" type="text/css"/>
                     <link href="/theme_oca/static/src/css/animate.min.css" rel="stylesheet"/>
+                    <link href="/theme_oca/static/src/css/website.override.css" rel="stylesheet"/>
                     <link href="/theme_oca/static/src/css/bootstrap-dropdownhover.min.css" rel="stylesheet"/>
                     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet"/>
                     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"/>

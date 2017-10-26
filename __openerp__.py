@@ -30,6 +30,7 @@
         'views/assets.xml',
         'views/oca_view.xml',
         'views/snippets.xml',
+        'views/theme.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
